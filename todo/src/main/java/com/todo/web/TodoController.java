@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.todo.domain.Category;
+import com.todo.domain.Todo;
 import com.todo.service.CategoryService;
+import com.todo.service.TodoService;
 
 import lombok.extern.java.Log;
 
@@ -22,6 +24,9 @@ public class TodoController {
 	
 	@Autowired
 	CategoryService cService;
+	
+	@Autowired
+	TodoService tService;
 	
 	@GetMapping("/todo")
 	public void getCategory () {
@@ -44,5 +49,14 @@ public class TodoController {
 		
 		model.addAttribute("list", cService.getCategoryList(mno));
 		return cService.getCategoryList(mno);
+	}
+	
+	@PostMapping("/createTodo")
+	@ResponseBody
+	public String postSaveTodo(Todo todo) {
+		
+		tService.createTodo(todo);
+		
+		return "gg";
 	}
 }

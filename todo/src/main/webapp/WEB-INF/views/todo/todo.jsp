@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bootstrap Example</title>
+<title>Todo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -93,20 +93,11 @@
 		    <td>
 		    <select name="cateSelect" id="action_select">
 		    	
-		    	<!-- 
-		    	<c:forEach var="cate" items="list">
-		    		<option value="SHOPPING">${list.cname}</option>
-		    	</c:forEach>
-		    	<option value="SHOPPING">SHOPPING</option>
-				<option value="WORK">WORK</option>
-				<option value="SPORT">SPORT</option>
-				<option value="MUSIC">MUSIC</option>
-				 --> 
 		    </select>
 		<!-- End td 1 -->
 		      </td>
 		       <td>
-		<input type="text" class="input_title_desc" />      
+		<input type="text" class="input_title_desc" id="title"/>      
 		
 		         <!-- End td 2 -->
 		      </td>
@@ -120,7 +111,7 @@
 		      </td>
 		    </tr>
 		<tr>
-		   <th class="titl_description" >Description</th>
+		   <th class="titl_description" id="content" >Description</th>
 		    </tr>
 		<tr>
 		
@@ -130,7 +121,7 @@
 		    </tr>
 		    <tr>
 		    <td colspan="3">
-		  <button class="btn_add_fin"  onclick="add_to_list()">ADD</button>
+		  <button class="btn_add_fin"  id="todoAdd" onclick="add_to_list()">ADD</button>
 		  </td>
 		    </tr>
 		  </table>
@@ -281,10 +272,12 @@
 			data:{cname : $('#addCate').val(), mno: 1}
 		}).done(function(data){
 			console.log("성공:"+data);
+			
+			getCategory();
+			
 			$("#addCate").val("");
 		});
 		
-		//getCategory();
 	});
 	
 	function getCategory(){
@@ -323,6 +316,18 @@
 		})
 		
 	}
+	
+	
+	$('#todoAdd').on('click', function(){
+		$.ajax({
+			url:"/todo/createTodo",
+			data:"cno=1",
+			dataType:"json"
+		}).done(function(data){
+			console.log("data="+data);
+			
+		})
+	});
 	
 	getCategory();
 	getCateName();
