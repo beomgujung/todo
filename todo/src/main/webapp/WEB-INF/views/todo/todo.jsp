@@ -272,10 +272,9 @@
 			data:{cname : $('#addCate').val(), mno: 1}
 		}).done(function(data){
 			console.log("성공:"+data);
-			
-			getCategory();
-			
 			$("#addCate").val("");
+			
+			getCategory(); // 이녀석이 실행되면서 for문이 계속 <li>를 만듦
 		});
 		
 	});
@@ -295,7 +294,7 @@
 				cStr += '<li><a href="#'+ cateName + '">'+ cateName +'</a></li>';
 			}
 			
-			$('#category').append(cStr);
+			$('#category').html(cStr);
 
 		});
 	}
@@ -307,6 +306,7 @@
             dataType:"json"
 		}).done (function(data) {
 			var cSelect = "";
+			var firstData = data;
 			for(var i = 0 ; i < data.length; i++){
 				var cName = data[i].cname;
 				cSelect += '<option value="#'+ cName + '">'+ cName +'</option>';
