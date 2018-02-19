@@ -5,7 +5,7 @@ import java.util.List;
 import com.todo.domain.Todo;
 
 
-public interface TodoMapper {
+public interface TodoMapper extends CRUDMapper<Todo, Integer>{
 
 public void insertTodo(Todo todo);
 	

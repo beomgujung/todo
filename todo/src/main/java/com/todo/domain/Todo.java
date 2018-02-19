@@ -8,5 +8,5 @@ import lombok.Data;
 public class Todo {
 	private int tno, mno, cno;
 	private String title, content;
-	private Date startDate, endDate;
+	private Date startDate, endDate, compDate;
 }

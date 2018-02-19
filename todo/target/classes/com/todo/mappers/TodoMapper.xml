@@ -4,9 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.todo.mappers.TodoMapper">
-	<insert id="createTodo">
+	<insert id="insertTodo">
 		insert into tb_todo (title, content, start_date, end_date, comp_date, mno, cno)
-		values(#{title}, #{content}, sysdate, #{endDate}, #{compDate}, mno, cno)
+		values(#{title}, #{content}, #{startDate}, #{endDate}, #{compDate}, #{mno}, #{cno})
 	</insert>
 	
 	<select id="getTodoList" resultType="Todo">

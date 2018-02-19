@@ -111,12 +111,12 @@
 		      </td>
 		    </tr>
 		<tr>
-		   <th class="titl_description" id="content" >Description</th>
+		   <th class="titl_description" >Description</th>
 		    </tr>
 		<tr>
 		
 		  <td colspan="3">
-		  <input type="text" class="input_description" required />
+		  <input type="text" class="input_description"  id="content" />
 		  </td>
 		    </tr>
 		    <tr>
@@ -274,7 +274,7 @@
 			console.log("성공:"+data);
 			$("#addCate").val("");
 			
-			getCategory(); // 이녀석이 실행되면서 for문이 계속 <li>를 만듦
+			getCategory(); 
 		});
 		
 	});
@@ -306,7 +306,6 @@
             dataType:"json"
 		}).done (function(data) {
 			var cSelect = "";
-			var firstData = data;
 			for(var i = 0 ; i < data.length; i++){
 				var cName = data[i].cname;
 				cSelect += '<option value="#'+ cName + '">'+ cName +'</option>';
@@ -321,15 +320,30 @@
 	$('#todoAdd').on('click', function(){
 		$.ajax({
 			url:"/todo/createTodo",
-			data:"cno=1",
-			dataType:"json"
+			type:"post",
+			data:{title: $('#title').val(), content: $('#content').val(), mno: 1, cno: 21}
 		}).done(function(data){
 			console.log("data="+data);
 			
 		})
 	});
 	
-	getCategory();
+/* 
+	function getTodoList(){
+		$.ajax({
+			url:"/todo/getTodo",
+			data:'mno=1,cno=21',
+			dataType:'json'
+		}).done(function(list){
+			var todoList = "";
+			for(var i = 0 ; list.lenth; i++){
+				var todoName = list[i].title
+			}
+		})
+	}
+	
+ */
+ 	getCategory();
 	getCateName();
 </script>
 </body>
